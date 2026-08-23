@@ -18,6 +18,7 @@ public:
         queue<TreeNode*> q;
 
         q.push(root);
+        int flag = 1;
 
         while(!q.empty())
         {
@@ -29,18 +30,23 @@ public:
                 TreeNode* temp  = q.front();
                 q.pop();
 
-                level.push_back(temp->val);
-
+                
                 if(temp->left) q.push(temp->left);
                 if(temp->right) q.push(temp->right);
+                
+
+                level.push_back(temp->val);
 
             }
+            if(flag==0)
+            {
+               reverse(level.begin(),level.end()); 
+               flag = 1;
+            }else{
+                flag = 0;
+            }
             ans.push_back(level);
-        }
 
-        for(int i=1;i<ans.size();i+=2)
-        {
-            reverse(ans[i].begin(),ans[i].end());
         }
         return ans;
     }
