@@ -3,7 +3,6 @@ public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int n = temperatures.size()-1;
       vector<int> ans(n+1);
-      ans[n] = 0;
       stack<int> st;
       st.push(n);
 
