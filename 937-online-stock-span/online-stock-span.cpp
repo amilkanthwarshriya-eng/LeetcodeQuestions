@@ -9,8 +9,7 @@ public:
         int span = 1;
         while(!st.empty() && st.top().first <= price)
         {
-            auto& top = st.top();
-            span += top.second;
+            span += st.top().second;
             st.pop();
         }
         st.push({price,span});
