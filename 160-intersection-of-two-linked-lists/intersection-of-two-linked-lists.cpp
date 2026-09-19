@@ -14,8 +14,15 @@ public:
 
         while(a!=b)
         {
-            a = (a==nullptr)?headB:a->next;
-            b = (b==nullptr)?headA:b->next;
+            a = a->next;
+            b = b->next;
+
+            if(a==b) return a;
+
+            if(a==nullptr) a = headB;
+
+            if(b==nullptr) b = headA;
+
         }
 
         return a;
