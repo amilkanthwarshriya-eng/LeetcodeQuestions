@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-        unordered_set<int> st1,st2;
+        unordered_set<int> st1;
         vector<int> ans;
 
         int i = 0;
@@ -14,13 +14,9 @@ public:
         {
             if(st1.find(nums2[i])!=st1.end())
             {
-                st2.insert(nums2[i]);
+                ans.push_back(nums2[i]);
+                st1.erase(nums2[i]);
             }
-        }
-        
-        for(int val : st2)
-        {
-            ans.push_back(val);
         }
         
         return ans;
