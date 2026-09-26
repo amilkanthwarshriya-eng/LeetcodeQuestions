@@ -1,35 +1,36 @@
 class MyCircularQueue {
 public:
-    int n;
+    int n = 0;
     ListNode* head;
     ListNode* curr;
     ListNode* prev;
 
     MyCircularQueue(int k) {
-        n = k;
-        ListNode* h = new ListNode(-1);
-        ListNode* temp = h;
+       n = k;
+       ListNode* h = new ListNode(-1);
+       ListNode* temp = h;
 
-        for(int i=1;i<k;i++)
-        {
+       for(int i=1;i<k;i++)
+       {
             temp->next = new ListNode(-1);
-            temp = temp->next;
-        }
+            temp  = temp->next;
+       }
 
-        temp->next = h;
+       temp->next = h;
 
-        head = h;
-        curr = head;
-        prev = head;
+       head = h;
+       curr = head;
+       prev = head;
+
     }
-    int sz = 0;
+    int totEle = 0;
     bool enQueue(int value) {
-        if(sz<n)
+        if(totEle<n)
         {
             curr->val = value;
             prev = curr;
             curr = curr->next;
-            sz++;
+            totEle++;
             return true;
         }else{
             return false;
@@ -37,13 +38,12 @@ public:
     }
     
     bool deQueue() {
-        if(sz>0)
+        if(totEle>0)
         {
             ListNode* temp = head;
             head = head->next;
             temp->val = -1;
-
-            sz--;
+            totEle--;
             return true;
         }else{
             return false;
@@ -59,13 +59,13 @@ public:
     }
     
     bool isEmpty() {
-        if(sz==0) return true;
-        else return false;
+        if(totEle==0) return true;
+        return false;
     }
     
     bool isFull() {
-        if(sz==n) return true;
-        else return false;
+        if(totEle==n) return true;
+        return false;
     }
 };
 
