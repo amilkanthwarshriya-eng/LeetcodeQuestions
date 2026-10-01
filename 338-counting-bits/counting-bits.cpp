@@ -1,15 +1,17 @@
 class Solution {
 public:
     vector<int> countBits(int n) {
-        vector<int> ans;
-        ans.push_back(0);
+        vector<int> ans(n+1);
+        if(n==0) return ans;
+
+        ans[0] = 0;
         for(int i=1;i<=n;i++)
         {
             if(i%2!=0)
             {
-                ans.push_back(ans[i/2]+1);
+                ans[i] = ans[i/2]+1;
             }else{
-                ans.push_back(ans[i/2]);
+                ans[i] = ans[i/2];
             }
         }
         return ans;
