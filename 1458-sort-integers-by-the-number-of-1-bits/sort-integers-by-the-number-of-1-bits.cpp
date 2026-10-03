@@ -16,13 +16,14 @@ public:
     vector<int> sortByBits(vector<int>& arr) {
         auto lambda = [&](int &a,int &b)
         {
-            int cA = countSetBits(a);
-            int cB = countSetBits(b);
+            int cA = __builtin_popcount(a);
+            int cB = __builtin_popcount(b);
 
             if(cA==cB) return a<b;
 
             return cA<cB;
         };
+
         sort(arr.begin(),arr.end(),lambda);
         return arr;
     }
