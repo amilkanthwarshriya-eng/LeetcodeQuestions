@@ -3,32 +3,20 @@ public:
     bool validMountainArray(vector<int>& arr) {
         int n = arr.size();
         if(n<3) return false;
-        int i=0;
-        while(i<n)
+        int i = 0;
+
+        while(i+1<n && arr[i]<arr[i+1])
         {
             i++;
-            if(arr[i]==arr[i-1])
-            {
-                return false;
-            }
-            else if(arr[i]<arr[i-1])
-            {
-                break;
-            }
         }
-        if(i==n || i==1) return false;
 
-        int j=i+1;
-        while(j<n)
+        if(i==n-1 || i==0) return false;
+
+        while(i+1<n && arr[i]>arr[i+1])
         {
-            if(arr[j]>=arr[j-1])
-            {
-                return false;
-            }
-            j++;
+            i++;
         }
 
-        return true;
-
+        return i==n-1;
     }
 };
