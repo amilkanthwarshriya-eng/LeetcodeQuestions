@@ -2,7 +2,15 @@ class Solution {
 public:
     long long minSumSquareDiff(vector<int>& nums1, vector<int>& nums2, int k1, int k2) {
         int n = nums1.size();
-        vector<int> countDiff(1e5+1,0);
+
+        long long maxDiff = LLONG_MIN;
+
+        for(int i=0;i<n;i++)
+        {
+            long long diff = abs(nums1[i]-nums2[i]);
+            maxDiff = max(diff,maxDiff);
+        }
+        vector<int> countDiff(maxDiff+1,0);
 
         for(int i=0;i<n;i++)
         {
@@ -12,7 +20,7 @@ public:
 
         int k = k1+k2;
 
-        for(int currentDiff=1e5 ; currentDiff>0 && k>0; currentDiff--)
+        for(int currentDiff=maxDiff ; currentDiff>0 && k>0; currentDiff--)
         {
             int currOps = min(countDiff[currentDiff],k);
 
@@ -24,7 +32,7 @@ public:
 
         long long result = 0;
 
-        for(long long i=0;i<=1e5;i++)
+        for(long long i=0;i<=maxDiff;i++)
         {
             result+= (countDiff[i] * i*i);
         }
