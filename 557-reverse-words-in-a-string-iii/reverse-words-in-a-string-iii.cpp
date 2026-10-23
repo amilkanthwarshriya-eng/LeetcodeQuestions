@@ -3,29 +3,21 @@ public:
     string reverseWords(string s) {
         string ans="";
         string str = "";
-        for(int i=s.size()-1;i>=0;i--)
+        for(int i=0;i<s.size();i++)
         {
-           
+            
             if(isspace(s[i]))
             {
-                if(ans.empty())
-                {
-                    ans = str+ans;
-                }else{
-                    ans = str+ " " +ans;
-                }
+                reverse(str.begin(), str.end());
+                ans += ans.empty() ? str :  " " + str;
                 str = "";
             }else{
                 str+=s[i];
             }
-            
         }
-        if(ans.empty())
-        {
-            ans = str+ans;
-        }else{
-            ans = str+ " " +ans;
-        }
+        reverse(str.begin(), str.end());
+        ans += ans.empty() ? str : " " + str;
         return ans;
+
     }
 };
