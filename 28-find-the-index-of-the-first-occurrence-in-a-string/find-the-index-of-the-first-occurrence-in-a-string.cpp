@@ -1,10 +1,25 @@
 class Solution {
 public:
     int strStr(string haystack, string needle) {
-        size_t index = haystack.find(needle);
-        if(index!=string::npos)
+        bool flag = true;
+        for(int i=0;i<haystack.size();i++)
         {
-            return index;
+            if(haystack[i]==needle[0])
+            {
+                for(int j=0;j<needle.size();j++)
+                {
+                    if(needle[j]!=haystack[i+j])
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+                if(flag)
+                {
+                    return i;
+                }
+            }
+            flag = true;
         }
         return -1;
     }
